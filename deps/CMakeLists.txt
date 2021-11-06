@@ -61,9 +61,13 @@ function(prusaslicer_add_cmake_project projectname)
 
     set(_gen "")
     set(_build_j "-j${NPROC}")
-if (MSVC)
+    if (MSVC)
         set(_gen CMAKE_GENERATOR "${DEP_MSVC_GEN}" CMAKE_GENERATOR_PLATFORM "${DEP_PLATFORM}")
         set(_build_j "/m")
+    endif ()
+    if (APPLE)
+        set(_cmake_osx_arch -DCMAKE_OSX_ARCHITECTURES:STRING=${CMAKE_OSX_ARCHITECTURES})
+        set(_cmake_args_osx_arch CMAKE_ARGS -DCMAKE_OSX_ARCHITECTURES:STRING=${CMAKE_OSX_ARCHITECTURES})
     endif ()
 
     ExternalProject_Add(
@@ -79,6 +83,7 @@ if (MSVC)
             -DCMAKE_C_COMPILER:STRING=${CMAKE_C_COMPILER}
             -DCMAKE_CXX_COMPILER:STRING=${CMAKE_CXX_COMPILER}
             -DBUILD_SHARED_LIBS:BOOL=OFF
+            ${_cmake_osx_arch}
             "${_configs_line}"
             ${DEP_CMAKE_OPTS}
             ${P_ARGS_CMAKE_ARGS}
@@ -181,6 +186,7 @@ if ("${CMAKE_SIZEOF_VOID_P}" STREQUAL "8")
         DEPENDS dep_boost
         CONFIGURE_COMMAND ""
         BUILD_COMMAND ""
+        ${_cmake_args_osx_arch}
         INSTALL_COMMAND ${CMAKE_COMMAND} -E copy_directory
             "${CMAKE_CURRENT_BINARY_DIR}/dep_boost_polygon-prefix/src/dep_boost_polygon/include/boost/polygon"
             "${DESTDIR}/usr/local/include/boost/polygon"
