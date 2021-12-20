@@ -4009,12 +4009,14 @@ void PrintConfigDef::init_fff_params()
     def->sidetext_width = 20;
     def->category = OptionCategory::perimeter;
     def->tooltip = L("In sloping areas, when you have a number of top/bottom solid layers and few perimeters,"
-        " it is necessary to put some solid infill above/below the perimeters to fulfill the top/bottom layers criteria."
-        "\nBy setting this to something higher than 0, you can control this behaviour if it generates strange solid infill."
+        " it may be necessary to put some solid infill above/below the perimeters to fulfill the top/bottom layers criteria."
+        "\nBy setting this to something higher than 0, you can control this behaviour, which might be desirable if "
+	"\nstrange solid infill is being generated on slopes."
         "\nThe number set here indicates the number of layers between the inside of the part and the air"
-        "\nat which solid infill should no longer be added. If this setting is equal or higher than the top/bottom solid layer count, "
-        "\nit won't do anything anything. If this setting is set to 1, it will evict all solid fill above/below perimeters."
-        "\nSet zero to disable."
+        "\nat and beyond which solid infill should no longer be added above/below. If this setting is equal or higher than " 
+	"\nthe top/bottom solid layer count, it won't do anything. If this setting is set to 1, it will evict "
+	"\nall solid fill above/below perimeters. "
+	"\nSet zero to disable."
         "\n!! ensure_vertical_shell_thickness may be erased by this setting !! You may want to deactivate at least one of the two.");
     def->min = 0;
     def->mode = comAdvanced;
