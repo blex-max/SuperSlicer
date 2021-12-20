@@ -4008,12 +4008,12 @@ void PrintConfigDef::init_fff_params()
     def->sidetext = L("perimeters");
     def->sidetext_width = 20;
     def->category = OptionCategory::perimeter;
-    def->tooltip = L("When you have a medium/hight number of top/bottom solid layers, and a low/medium of perimeters,"
-        " then it have to put some solid infill inside the part to have enough solid layers."
-        "\nBy setting this to something higher than 0, you can remove this 'inside filling'."
-        " This number allow to keep some if there is a low number of perimeter over the void."
-        "\nIf this setting is equal or higher than the top/bottom solid layer count, it won't evict anything."
-        "\nIf this setting is set to 1, it will evict all solid fill are are only over perimeters."
+    def->tooltip = L("In sloping areas, when you have a number of top/bottom solid layers and few perimeters,"
+        " it is necessary to put some solid infill above/below the perimeters to fulfill the top/bottom layers criteria."
+        "\nBy setting this to something higher than 0, you can control this behaviour if it generates strange solid infill."
+        "\nThe number set here indicates the number of layers between the inside of the part and the air"
+        "\nat which solid infill should no longer be added. If this setting is equal or higher than the top/bottom solid layer count, "
+        "\nit won't do anything anything. If this setting is set to 1, it will evict all solid fill above/below perimeters."
         "\nSet zero to disable."
         "\n!! ensure_vertical_shell_thickness may be erased by this setting !! You may want to deactivate at least one of the two.");
     def->min = 0;
