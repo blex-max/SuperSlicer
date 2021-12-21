@@ -138,7 +138,7 @@ void PrintConfigDef::init_common_params()
     def = this->add("slice_closing_radius", coFloat);
     def->label = L("Slice gap closing radius");
     def->category = OptionCategory::slicing;
-    def->tooltip = L("Cracks smaller than 2x gap closing radius are being filled during the triangle mesh slicing. "
+    def->tooltip = L("Cracks smaller than 2x gap closing radius are filled during the triangle mesh slicing. "
                      "The gap closing operation may reduce the final print resolution, therefore it is advisable to keep the value reasonably low.");
     def->sidetext = L("mm");
     def->min = 0;
@@ -223,7 +223,7 @@ void PrintConfigDef::init_fff_params()
     def->label = L("Allow empty layers");
     def->full_label = L("Allow empty layers");
     def->category = OptionCategory::slicing;
-    def->tooltip = L("Do not prevent the gcode builder to trigger an exception if a full layer is empty and so the print will have to start from thin air afterward.");
+    def->tooltip = L("Prevent the gcode builder from triggering an exception if a full layer is empty, and allow the print to start from thin air afterward.");
     def->mode = comExpert;
     def->set_default_value(new ConfigOptionBool(false));
 
@@ -240,7 +240,7 @@ void PrintConfigDef::init_fff_params()
     def->label = L("Don't avoid crossing on 1st layer");
     def->full_label = L("Don't avoid crossing on 1st layer");
     def->category = OptionCategory::perimeter;
-    def->tooltip = L("Do not use the 'Avoid crossing perimeters' on the first layer.");
+    def->tooltip = L("Disable 'Avoid crossing perimeters' for the first layer.");
     def->mode = comExpert;
     def->set_default_value(new ConfigOptionBool(true));
 
@@ -249,7 +249,7 @@ void PrintConfigDef::init_fff_params()
     def->category = OptionCategory::perimeter;
     def->tooltip = L("The maximum detour length for avoid crossing perimeters. "
                      "If the detour is longer than this value, avoid crossing perimeters is not applied for this travel path. "
-                     "Detour length could be specified either as an absolute value or as percentage (for example 50%) of a direct travel path.");
+                     "Detour length can be specified either as an absolute value or as percentage (for example 50%) of a direct travel path.");
     def->sidetext = L("mm or % (zero to disable)");
     def->min = 0;
     def->mode = comExpert;
