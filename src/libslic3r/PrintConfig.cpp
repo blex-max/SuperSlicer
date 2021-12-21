@@ -4011,7 +4011,7 @@ void PrintConfigDef::init_fff_params()
     def->tooltip = L("In sloping areas, when you have a number of top/bottom solid layers and few perimeters,"
         " it may be necessary to put some solid infill above/below the perimeters to fulfill the top/bottom layers criteria."
         "\nBy setting this to something higher than 0, you can control this behaviour, which might be desirable if "
-	"\nstrange solid infill is being generated on slopes."
+	"\nundesirable solid infill is being generated on slopes."
         "\nThe number set here indicates the number of layers between the inside of the part and the air"
         "\nat and beyond which solid infill should no longer be added above/below. If this setting is equal or higher than " 
 	"\nthe top/bottom solid layer count, it won't do anything. If this setting is set to 1, it will evict "
